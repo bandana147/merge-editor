@@ -1,13 +1,11 @@
 import { toHast as mdast2hast, defaultHandlers } from 'mdast-util-to-hast';
 import { raw } from 'hast-util-raw';
 import { mdast2hastGridTablesHandler, TYPE_TABLE } from '@adobe/mdast-util-gridtables';
-import { toHtml } from 'hast-util-to-html';
 import parseMarkdown from './libs/parseMarkdown.bundle.js';
 import objectHash from 'object-hash';
 import { v4 as uuidv4 } from 'uuid';
-// import Sortable from 'sortablejs';
 
-async function getMdastFromMd(mdContent) {
+export async function getMdastFromMd(mdContent) {
   const state = { content: { data: mdContent }, log: '' };
   await parseMarkdown(state);
   return state.content.mdast;

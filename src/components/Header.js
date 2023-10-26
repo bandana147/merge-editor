@@ -1,17 +1,10 @@
-import { useEffect, useState } from 'react';
 import { SearchField, Picker, Item, ActionButton } from '@adobe/react-spectrum';
 import Maximize from '@spectrum-icons/workflow/Maximize';
 import Minimize from '@spectrum-icons/workflow/Minimize';
 import Add from '@spectrum-icons/workflow/Add';
 import Remove from '@spectrum-icons/workflow/Remove';
 
-function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSearchResult, onToggleCollapse, scaleDown, scaleUp }) {
-
-  function onSave() {
-    // var turndownService = new TurndownService();
-    // var markdown = turndownService.turndown(document.querySelector('#app'))
-    // console.log(markdown)
-  }
+function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSearchResult, onToggleCollapse, scaleDown, scaleUp, onSave }) {
 
   function searchWordInAST(ast, targetWord, foundNodes, parentId = null) {
     for (const node of ast) {
@@ -63,8 +56,9 @@ function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSe
   return (
     <div id="topnav">
       <div className="nav-wrapper">
-        <Picker placeholder='Select a block' onSelectionChange={onSelectBlock}>
+        <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close">
           {blockTypes.map(type => <Item key={type}>{type}</Item>)}
+          <Item key="all">All</Item>
         </Picker>
         <SearchField onChange={onChangeSearch} placeholder='Search' />
         {collapsed? <ActionButton onClick={onToggleCollapse}><Maximize/></ActionButton> : <ActionButton onClick={onToggleCollapse}><Minimize/></ActionButton>}

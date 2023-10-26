@@ -46,6 +46,11 @@ function App() {
     document.querySelector('#doc').style.transform = `scale(${newScale})`;
   }
 
+  function onSave() {
+    //convert to doc here
+    console.log(blocks);
+  }
+
   function setBlocks(blocks) {
     setHast({ ...hast, children: blocks });
   }
@@ -71,6 +76,7 @@ function App() {
         collapsed={collapsed}
         allBlocks={hast.children}
         setNoResultFound={setNoResultFound}
+        onSave={onSave}
       />
       <div id="doc" className='main-wrapper'>
         <div className={`block-container ${collapsed ? 'collapsed' : ''}`}>
