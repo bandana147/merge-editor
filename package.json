@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/mdast-util-gridtables": "^3.0.2",
+    "@adobe/react-spectrum": "^3.31.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "hast-util-raw": "^9.0.1",
+    "hast-util-to-html": "^9.0.0",
+    "mdast-util-to-hast": "^13.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-sortablejs": "^6.1.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -16,12 +22,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -34,5 +34,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/sortablejs": "^1.15.4",
+    "sortablejs": "^1.15.0"
   }
 }
