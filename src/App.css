@@ -82,12 +82,6 @@
   gap: 12px;
 }
 
-.nav-wrapper button {
-  background-color: #21262C;
-  color: #C8D1D9;
-  border: 1px solid #363B41;
-}
-
 .main-wrapper {
   max-width: 100%;
   margin: 56px 0 0 40px;

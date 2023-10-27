@@ -22,6 +22,9 @@ function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSe
     }
   }
 
+  function onClearSearch() {
+    setNoResultFound(false);
+  }
 
   function onChangeSearch(searchKeyword) {
     if (searchKeyword.trim().length <= 0) {
@@ -60,7 +63,7 @@ function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSe
           {blockTypes.map(type => <Item key={type}>{type}</Item>)}
           <Item key="all">All</Item>
         </Picker>
-        <SearchField onChange={onChangeSearch} placeholder='Search' />
+        <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search' />
         {collapsed? <ActionButton onClick={onToggleCollapse}><Maximize/></ActionButton> : <ActionButton onClick={onToggleCollapse}><Minimize/></ActionButton>}
         <ActionButton onClick={scaleDown}><Remove/></ActionButton>
         <ActionButton onClick={scaleUp}><Add/></ActionButton>
