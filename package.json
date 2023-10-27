@@ -2,12 +2,14 @@
   "name": "merge-editor",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://bandana147.github.io/merge-editor/",
   "dependencies": {
     "@adobe/mdast-util-gridtables": "^3.0.2",
     "@adobe/react-spectrum": "^3.31.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^6.0.0",
     "hast-util-raw": "^9.0.1",
     "hast-util-to-html": "^9.0.0",
     "mdast-util-to-hast": "^13.0.2",
@@ -21,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
