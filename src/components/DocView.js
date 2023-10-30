@@ -1,11 +1,10 @@
-
 import { toHtml } from 'hast-util-to-html';
 import { ReactSortable } from "react-sortablejs";
 import Close from '@spectrum-icons/workflow/Close';
 import Tick from '@spectrum-icons/workflow/Checkmark';
 
 export default function DocView({ blocks, setBlocks, isPreview, noResultFound }) {
-
+ 
   function removeNode(id) {
     const newBlocks = blocks.filter(child => child.uuid !== id);
     setBlocks(newBlocks);
@@ -41,8 +40,14 @@ export default function DocView({ blocks, setBlocks, isPreview, noResultFound })
     setBlocks(newBlocks);
   }
 
-  function setList() {
-
+  function onClickBlock(uuid) {
+    const container = document.getElementById('doc');
+    const elem = document.getElementById(uuid);
+    elem.classList.add('highlight');
+    container.scrollTop = elem.offsetTop - 20;
+    setTimeout(()=> {
+      elem.classList.remove('highlight');
+    }, 1200)
   }
 
   function renderDocNode(node, index) {
@@ -52,7 +57,7 @@ export default function DocView({ blocks, setBlocks, isPreview, noResultFound })
     const mergeType = node.hash?.type;
 
     return (
-      <div id={node.uuid} key={node.uuid} className={`elem-wrap ${mergeType ? mergeType : 'orig'}`}>
+      <div onClick={() => { onClickBlock(node.uuid)}} id={node.uuid} key={node.uuid} className={`elem-wrap ${mergeType ? mergeType : 'orig'}`}>
         <div dangerouslySetInnerHTML={{ __html: elem }} />
         {mergeType && !isPreview && (<div className='toolbox'>
           <div onClick={() => { onReject(node.uuid, index, mergeType) }} className='icon cross-icon'><Close/></div>
@@ -67,7 +72,7 @@ export default function DocView({ blocks, setBlocks, isPreview, noResultFound })
   }
 
   return (
-    <ReactSortable list={blocks} setList={setList} onUpdate={onUpdateList}>
+    <ReactSortable list={blocks} setList={()=>{}} onUpdate={onUpdateList}>
       {blocks?.map((node, i) => renderDocNode(node, i))}
     </ReactSortable>
   )
