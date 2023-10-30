@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { md2html } from './editor.js';
 import DocView from './components/DocView.js';
 import Header from './components/Header.js';
+import { mdast2docx } from './libs/mdast2docx.bundle.js';
+import { toMdast } from 'hast-util-to-mdast';
 import './App.css';
 
 function App() {
@@ -46,9 +48,15 @@ function App() {
     document.querySelector('#doc').style.transform = `scale(${newScale})`;
   }
 
-  function onSave() {
-    //convert to doc here
-    console.log(blocks);
+  async function onSave() {
+    const children = hast.children.map(node => node.child);
+    const unProcessedHast = toMdast({ ...hast, children });
+    const blob = await mdast2docx(unProcessedHast);
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.click();
+    URL.revokeObjectURL(blobUrl);
   }
 
   function setBlocks(blocks) {
@@ -64,7 +72,6 @@ function App() {
   } else {
     node = hast.children || [];
   }
-
   return (
     <>
       <Header
@@ -80,7 +87,7 @@ function App() {
       />
       <div id="doc" className='main-wrapper'>
         <div className={`block-container ${collapsed ? 'collapsed' : ''}`}>
-          <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound}/>
+          <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} />
         </div>
         <div className="collapsed preview-container">
           <DocView blocks={node} setBlocks={setBlocks} isPreview={true} />
