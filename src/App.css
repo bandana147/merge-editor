@@ -6,6 +6,8 @@
   position: relative;
   cursor: grab;
   margin: 20px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
 }
 
 .collapsed .elem-wrap table > tbody > tr:not(:first-child) {
@@ -44,6 +46,9 @@
 .preview-container {
   width: 200px;
   border-left: 1px solid #616467;
+  position: sticky;
+  top: 0;
+  overflow: auto;
 }
 
 .preview-container hr {
@@ -66,7 +71,7 @@
   left: 0;
   justify-content: end;
   padding: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 68px;
   background-color: #02040A;
   border-bottom: 1px solid #21262C;
 }
@@ -95,6 +100,10 @@
 
 .block-container {
   width: 1024px;
+}
+
+.block-container .elem-wrap.highlight {
+  border-color:pink;
 }
 
 table {
