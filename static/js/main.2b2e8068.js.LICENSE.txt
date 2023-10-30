@@ -1,0 +1,2583 @@
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+/*! ../../common/html */
+
+/*! ../../tokenizer */
+
+/*! ../../utils/mixin */
+
+/*! ../all.js */
+
+/*! ../assert */
+
+/*! ../common/doctype */
+
+/*! ../common/error-codes */
+
+/*! ../common/foreign-content */
+
+/*! ../common/html */
+
+/*! ../common/unicode */
+
+/*! ../constant/dangerous.js */
+
+/*! ../errors */
+
+/*! ../extensions/error-reporting/parser-mixin */
+
+/*! ../extensions/location-info/parser-mixin */
+
+/*! ../location-info/tokenizer-mixin */
+
+/*! ../mdast2docx/index.js */
+
+/*! ../normalize.js */
+
+/*! ../position-tracking/preprocessor-mixin */
+
+/*! ../readUInt */
+
+/*! ../revert.js */
+
+/*! ../tokenizer */
+
+/*! ../traverse.js */
+
+/*! ../tree-adapters/default */
+
+/*! ../util/check-bullet.js */
+
+/*! ../util/check-fence.js */
+
+/*! ../util/check-list-item-indent.js */
+
+/*! ../util/container-flow.js */
+
+/*! ../util/find-selected-options.js */
+
+/*! ../util/format-code-as-indented.js */
+
+/*! ../util/indent-lines.js */
+
+/*! ../util/list-items-spread.js */
+
+/*! ../util/own.js */
+
+/*! ../util/pattern-compile.js */
+
+/*! ../util/resolve.js */
+
+/*! ../util/safe.js */
+
+/*! ../util/track.js */
+
+/*! ../util/wrap-children.js */
+
+/*! ../util/wrap-list-items.js */
+
+/*! ../util/wrap-text.js */
+
+/*! ../util/wrap.js */
+
+/*! ../utils.js */
+
+/*! ../utils/merge-options */
+
+/*! ../utils/mixin */
+
+/*! ../wrap.js */
+
+/*! ./ */
+
+/*! ./Mime */
+
+/*! ./a.js */
+
+/*! ./all.js */
+
+/*! ./base.js */
+
+/*! ./blank-line.js */
+
+/*! ./block.js */
+
+/*! ./blockquote.js */
+
+/*! ./br.js */
+
+/*! ./break.js */
+
+/*! ./case-sensitive-transform.js */
+
+/*! ./characterStyle.js */
+
+/*! ./closing.js */
+
+/*! ./code.js */
+
+/*! ./color.js */
+
+/*! ./comment.js */
+
+/*! ./common */
+
+/*! ./constants.js */
+
+/*! ./constructs.js */
+
+/*! ./content.js */
+
+/*! ./core.js */
+
+/*! ./create-tokenizer.js */
+
+/*! ./default-numbering.js */
+
+/*! ./defined-info.js */
+
+/*! ./del.js */
+
+/*! ./delete.js */
+
+/*! ./detector */
+
+/*! ./dl.js */
+
+/*! ./doctype.js */
+
+/*! ./em.js */
+
+/*! ./emphasis.js */
+
+/*! ./errors.js */
+
+/*! ./footer.js */
+
+/*! ./footnote-reference.js */
+
+/*! ./footnote.js */
+
+/*! ./formatting-element-list */
+
+/*! ./from-markdown.js */
+
+/*! ./gridTable.js */
+
+/*! ./gtRow.js */
+
+/*! ./handlers/index.js */
+
+/*! ./hast-table-cell-handler.js */
+
+/*! ./hast-table-handler.js */
+
+/*! ./heading.js */
+
+/*! ./hr.js */
+
+/*! ./html */
+
+/*! ./html.js */
+
+/*! ./ico */
+
+/*! ./iframe.js */
+
+/*! ./image-reference.js */
+
+/*! ./image.js */
+
+/*! ./img.js */
+
+/*! ./implementation */
+
+/*! ./info.js */
+
+/*! ./initialize/content.js */
+
+/*! ./initialize/document.js */
+
+/*! ./initialize/flow.js */
+
+/*! ./initialize/text.js */
+
+/*! ./inline-code.js */
+
+/*! ./inlineCode.js */
+
+/*! ./input.js */
+
+/*! ./internal/assert/assertion_error */
+
+/*! ./internal/errors */
+
+/*! ./internal/util/comparisons */
+
+/*! ./isArguments */
+
+/*! ./label-end.js */
+
+/*! ./li.js */
+
+/*! ./lib/aria.js */
+
+/*! ./lib/find.js */
+
+/*! ./lib/hast-to-react.js */
+
+/*! ./lib/html.js */
+
+/*! ./lib/index.js */
+
+/*! ./lib/normalize.js */
+
+/*! ./lib/svg.js */
+
+/*! ./lib/unicode-punctuation-regex.js */
+
+/*! ./lib/util/merge.js */
+
+/*! ./lib/xlink.js */
+
+/*! ./lib/xml.js */
+
+/*! ./lib/xmlns.js */
+
+/*! ./link-reference.js */
+
+/*! ./link.js */
+
+/*! ./list-item.js */
+
+/*! ./list.js */
+
+/*! ./listItem.js */
+
+/*! ./md2docx/index.js */
+
+/*! ./mdast-dereference.js */
+
+/*! ./mdast-download-images.js */
+
+/*! ./mdast-fix-code-flow.js */
+
+/*! ./mdast-image-references.js */
+
+/*! ./mdast-robust-tables.js */
+
+/*! ./mdast-sanitize-formats.js */
+
+/*! ./mdast-sanitize-heading.js */
+
+/*! ./mdast-sanitize-html.js */
+
+/*! ./mdast-sanitize-links.js */
+
+/*! ./mdast-sanitize-text-and-formats.js */
+
+/*! ./mdast-sanitize-text.js */
+
+/*! ./mdast-suppress-spacecode.js */
+
+/*! ./mdast2docx/index.js */
+
+/*! ./mdast2hast-handler.js */
+
+/*! ./media.js */
+
+/*! ./minpath.js */
+
+/*! ./minproc.js */
+
+/*! ./minurl.js */
+
+/*! ./minurl.shared.js */
+
+/*! ./mixin-base */
+
+/*! ./named-entity-data */
+
+/*! ./node_modules/console-browserify/index.js */
+
+/*! ./normalize.js */
+
+/*! ./omission.js */
+
+/*! ./omission/index.js */
+
+/*! ./one.js */
+
+/*! ./open-element-stack */
+
+/*! ./open-element-stack-mixin */
+
+/*! ./opening.js */
+
+/*! ./p.js */
+
+/*! ./paragraph.js */
+
+/*! ./paragraphStyle.js */
+
+/*! ./pattern-compile.js */
+
+/*! ./pattern-in-scope.js */
+
+/*! ./polyfill */
+
+/*! ./preprocessor */
+
+/*! ./preprocessor-mixin */
+
+/*! ./q.js */
+
+/*! ./raw.js */
+
+/*! ./remark-breaks-as-spaces.js */
+
+/*! ./remark-plugin.js */
+
+/*! ./root.js */
+
+/*! ./schema.js */
+
+/*! ./select.js */
+
+/*! ./shams */
+
+/*! ./shim */
+
+/*! ./skippable.js */
+
+/*! ./strong.js */
+
+/*! ./support/isBuffer */
+
+/*! ./support/types */
+
+/*! ./svg-case-sensitive-tag-names.js */
+
+/*! ./syntax.js */
+
+/*! ./table-cell.js */
+
+/*! ./table-row.js */
+
+/*! ./table.js */
+
+/*! ./tableCell.js */
+
+/*! ./tableRow.js */
+
+/*! ./template/word/styles.xml */
+
+/*! ./text.js */
+
+/*! ./textarea.js */
+
+/*! ./thematic-break.js */
+
+/*! ./thematicBreak.js */
+
+/*! ./to-decimal.js */
+
+/*! ./to-hexadecimal.js */
+
+/*! ./to-markdown.js */
+
+/*! ./to-named.js */
+
+/*! ./tokenizer-mixin */
+
+/*! ./track.js */
+
+/*! ./traverse.js */
+
+/*! ./tree.js */
+
+/*! ./types */
+
+/*! ./types.js */
+
+/*! ./types/bmp */
+
+/*! ./types/cur */
+
+/*! ./types/dds */
+
+/*! ./types/gif */
+
+/*! ./types/icns */
+
+/*! ./types/ico */
+
+/*! ./types/j2c */
+
+/*! ./types/jp2 */
+
+/*! ./types/jpg */
+
+/*! ./types/ktx */
+
+/*! ./types/other */
+
+/*! ./types/png */
+
+/*! ./types/pnm */
+
+/*! ./types/psd */
+
+/*! ./types/standard */
+
+/*! ./types/svg */
+
+/*! ./types/tga */
+
+/*! ./types/tiff */
+
+/*! ./types/webp */
+
+/*! ./util/case-insensitive-transform.js */
+
+/*! ./util/case-sensitive-transform.js */
+
+/*! ./util/comment.js */
+
+/*! ./util/create.js */
+
+/*! ./util/defined-info.js */
+
+/*! ./util/format-basic.js */
+
+/*! ./util/format-smart.js */
+
+/*! ./util/info.js */
+
+/*! ./util/own.js */
+
+/*! ./util/siblings.js */
+
+/*! ./util/types.js */
+
+/*! ./util/whitespace-start.js */
+
+/*! ./util/wrap-text.js */
+
+/*! ./utils.js */
+
+/*! ./wbr.js */
+
+/*! ./wrap-text.js */
+
+/*! ./wrap.js */
+
+/*! @adobe/helix-markdown-support */
+
+/*! @adobe/helix-markdown-support/gridtable */
+
+/*! @adobe/helix-markdown-support/matter */
+
+/*! @adobe/helix-shared-process-queue */
+
+/*! For license information please see parseMarkdown.bundle.js.LICENSE.txt */
+
+/*! assert */
+
+/*! available-typed-arrays */
+
+/*! bail */
+
+/*! base64-js */
+
+/*! buffer */
+
+/*! call-bind */
+
+/*! call-bind/callBound */
+
+/*! ccount */
+
+/*! character-entities-html4 */
+
+/*! character-entities-legacy */
+
+/*! comma-separated-tokens */
+
+/*! crypto */
+
+/*! debug */
+
+/*! decode-named-character-reference */
+
+/*! define-properties */
+
+/*! dequal */
+
+/*! diff */
+
+/*! docx */
+
+/*! es-abstract/helpers/getOwnPropertyDescriptor */
+
+/*! es6-object-assign */
+
+/*! escape-string-regexp */
+
+/*! events */
+
+/*! extend */
+
+/*! for-each */
+
+/*! fs */
+
+/*! function-bind */
+
+/*! get-intrinsic */
+
+/*! has */
+
+/*! has-property-descriptors */
+
+/*! has-symbols */
+
+/*! has-symbols/shams */
+
+/*! has-tostringtag/shams */
+
+/*! hast-util-embedded */
+
+/*! hast-util-from-parse5 */
+
+/*! hast-util-has-property */
+
+/*! hast-util-is-body-ok-link */
+
+/*! hast-util-is-element */
+
+/*! hast-util-parse-selector */
+
+/*! hast-util-phrasing */
+
+/*! hast-util-to-html */
+
+/*! hast-util-to-mdast */
+
+/*! hast-util-to-mdast/lib/all.js */
+
+/*! hast-util-to-text */
+
+/*! hast-util-whitespace */
+
+/*! hastscript */
+
+/*! html-void-elements */
+
+/*! ieee754 */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/*! image-size */
+
+/*! inherits */
+
+/*! is-arguments */
+
+/*! is-buffer */
+
+/*! is-callable */
+
+/*! is-generator-function */
+
+/*! is-nan */
+
+/*! is-plain-obj */
+
+/*! is-typed-array */
+
+/*! js-yaml */
+
+/*! js-yaml 4.1.0 https://github.com/nodeca/js-yaml @license MIT */
+
+/*! kleur */
+
+/*! lodash.iteratee */
+
+/*! longest-streak */
+
+/*! markdown-table */
+
+/*! mdast-util-definitions */
+
+/*! mdast-util-find-and-replace */
+
+/*! mdast-util-from-markdown */
+
+/*! mdast-util-gfm */
+
+/*! mdast-util-gfm-autolink-literal */
+
+/*! mdast-util-gfm-footnote */
+
+/*! mdast-util-gfm-strikethrough */
+
+/*! mdast-util-gfm-table */
+
+/*! mdast-util-gfm-task-list-item */
+
+/*! mdast-util-phrasing */
+
+/*! mdast-util-to-hast */
+
+/*! mdast-util-to-markdown/lib/handle/code.js */
+
+/*! mdast-util-to-markdown/lib/handle/inline-code.js */
+
+/*! mdast-util-to-markdown/lib/handle/list-item.js */
+
+/*! mdast-util-to-markdown/lib/handle/text.js */
+
+/*! mdast-util-to-markdown/lib/util/association.js */
+
+/*! mdast-util-to-markdown/lib/util/container-flow.js */
+
+/*! mdast-util-to-markdown/lib/util/container-phrasing.js */
+
+/*! mdast-util-to-markdown/lib/util/indent-lines.js */
+
+/*! mdast-util-to-markdown/lib/util/safe.js */
+
+/*! mdast-util-to-markdown/lib/util/track.js */
+
+/*! mdast-util-to-string */
+
+/*! micromark-core-commonmark */
+
+/*! micromark-extension-gfm */
+
+/*! micromark-extension-gfm-autolink-literal */
+
+/*! micromark-extension-gfm-footnote */
+
+/*! micromark-extension-gfm-strikethrough */
+
+/*! micromark-extension-gfm-table */
+
+/*! micromark-extension-gfm-tagfilter */
+
+/*! micromark-extension-gfm-task-list-item */
+
+/*! micromark-factory-destination */
+
+/*! micromark-factory-label */
+
+/*! micromark-factory-space */
+
+/*! micromark-factory-title */
+
+/*! micromark-factory-whitespace */
+
+/*! micromark-util-character */
+
+/*! micromark-util-chunked */
+
+/*! micromark-util-classify-character */
+
+/*! micromark-util-combine-extensions */
+
+/*! micromark-util-decode-numeric-character-reference */
+
+/*! micromark-util-decode-string */
+
+/*! micromark-util-encode */
+
+/*! micromark-util-html-tag-name */
+
+/*! micromark-util-normalize-identifier */
+
+/*! micromark-util-resolve-all */
+
+/*! micromark-util-sanitize-uri */
+
+/*! micromark-util-subtokenize */
+
+/*! micromark-util-symbol/codes.js */
+
+/*! micromark-util-symbol/constants.js */
+
+/*! micromark-util-symbol/types.js */
+
+/*! micromark-util-symbol/values.js */
+
+/*! micromark/lib/parse.js */
+
+/*! micromark/lib/postprocess.js */
+
+/*! micromark/lib/preprocess.js */
+
+/*! mime */
+
+/*! ms */
+
+/*! object-is */
+
+/*! object-keys */
+
+/*! parse5/lib/parser/index.js */
+
+/*! path */
+
+/*! process/browser.js */
+
+/*! property-information */
+
+/*! queue */
+
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+
+/*! rehype-minify-whitespace */
+
+/*! rehype-parse */
+
+/*! remark-gfm */
+
+/*! remark-parse */
+
+/*! space-separated-tokens */
+
+/*! stringify-entities */
+
+/*! trim-lines */
+
+/*! trim-trailing-lines */
+
+/*! trough */
+
+/*! unified */
+
+/*! unist-builder */
+
+/*! unist-util-find */
+
+/*! unist-util-find-after */
+
+/*! unist-util-generated */
+
+/*! unist-util-is */
+
+/*! unist-util-is/convert */
+
+/*! unist-util-position */
+
+/*! unist-util-stringify-position */
+
+/*! unist-util-visit */
+
+/*! unist-util-visit-parents */
+
+/*! util */
+
+/*! util/ */
+
+/*! uvu/assert */
+
+/*! uvu/diff */
+
+/*! vfile */
+
+/*! vfile-location */
+
+/*! vfile-message */
+
+/*! web-namespaces */
+
+/*! which-typed-array */
+
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+
+/*!**********************!*\
+  !*** path (ignored) ***!
+  \**********************/
+
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+
+/*!******************************!*\
+  !*** ./src/md2docx/index.js ***!
+  \******************************/
+
+/*!*******************************!*\
+  !*** ./src/mdast2docx/all.js ***!
+  \*******************************/
+
+/*!*********************************!*\
+  !*** ./src/mdast2docx/index.js ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./src/mdast2docx/utils.js ***!
+  \*********************************/
+
+/*!**********************************!*\
+  !*** ./node_modules/ms/index.js ***!
+  \**********************************/
+
+/*!***********************************!*\
+  !*** ./node_modules/mime/Mime.js ***!
+  \***********************************/
+
+/*!***********************************!*\
+  !*** ./node_modules/util/util.js ***!
+  \***********************************/
+
+/*!************************************!*\
+  !*** ./node_modules/bail/index.js ***!
+  \************************************/
+
+/*!************************************!*\
+  !*** ./node_modules/mime/index.js ***!
+  \************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/is-nan/shim.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/queue/index.js ***!
+  \*************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/buffer/index.js ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/ccount/index.js ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/extend/index.js ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/is-nan/index.js ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/kleur/index.mjs ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/trough/index.js ***!
+  \**************************************/
+
+/*!***************************************!*\
+  !*** ./node_modules/events/events.js ***!
+  \***************************************/
+
+/*!***************************************!*\
+  !*** ./node_modules/has/src/index.js ***!
+  \***************************************/
+
+/*!***************************************!*\
+  !*** ./node_modules/ieee754/index.js ***!
+  \***************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/for-each/index.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/object-is/shim.js ***!
+  \****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/base64-js/index.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/call-bind/index.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/diff/lib/index.mjs ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/is-nan/polyfill.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/object-is/index.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/uvu/diff/index.mjs ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/vfile/lib/index.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/mdast2docx/handlers/code.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/mdast2docx/handlers/html.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/mdast2docx/handlers/link.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/mdast2docx/handlers/list.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/mdast2docx/handlers/root.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/mdast2docx/handlers/text.js ***!
+  \*****************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/debug/src/common.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/docx/build/index.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/mime/types/other.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/remark-gfm/index.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/trim-lines/index.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/mdast2docx/handlers/break.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/mdast2docx/handlers/gtRow.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/mdast2docx/handlers/image.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/mdast2docx/handlers/index.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/mdast2docx/handlers/table.js ***!
+  \******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/debug/src/browser.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/has-symbols/index.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/has-symbols/shams.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/is-callable/index.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/object-keys/index.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/unified/lib/index.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/uvu/assert/index.mjs ***!
+  \*******************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/dequal/dist/index.mjs ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/hastscript/lib/svg.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/is-arguments/index.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/object-is/polyfill.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/remark-parse/index.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/util/support/types.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./src/mdast2docx/handlers/heading.js ***!
+  \********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/assert/build/assert.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/call-bind/callBound.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/function-bind/index.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/get-intrinsic/index.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/hastscript/lib/core.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/hastscript/lib/html.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/mime/types/standard.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/unist-builder/index.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/unist-util-is/index.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/vfile-message/index.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./src/mdast2docx/default-numbering.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./src/mdast2docx/handlers/listItem.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./src/mdast2docx/handlers/tableRow.js ***!
+  \*********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/is-typed-array/index.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/longest-streak/index.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/markdown-table/index.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/vfile-location/index.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/web-namespaces/index.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./src/mdast2docx/handlers/gridTable.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./src/mdast2docx/handlers/paragraph.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./src/mdast2docx/handlers/tableCell.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./src/mdast2docx/hast-table-handler.js ***!
+  \**********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/has-tostringtag/shams.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/image-size/dist/index.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/image-size/dist/types.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/is-nan/implementation.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/js-yaml/dist/js-yaml.mjs ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/lodash.iteratee/index.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/unist-util-find/index.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./src/mdast2docx/handlers/inlineCode.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./src/mdast2docx/mdast-sanitize-html.js ***!
+  \***********************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/parse5/lib/common/html.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/parse5/lib/utils/mixin.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/rehype-parse/lib/index.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/remark-parse/lib/index.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/unist-util-visit/index.js ***!
+  \************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/define-properties/index.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/es6-object-assign/index.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/hast-util-to-text/index.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/parse.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/object-keys/isArguments.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/parse5/lib/parser/index.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/rehype-parse/lib/errors.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/vfile/lib/minurl.shared.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/which-typed-array/index.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./src/mdast2docx/mdast-download-images.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./src/mdast2docx/template/word/styles.xml ***!
+  \*************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/console-browserify/index.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/hast-util-embedded/index.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/hast-util-phrasing/index.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/html-void-elements/index.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/image-size/dist/detector.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/image-size/dist/readUInt.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/mdast-util-gfm/lib/index.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/object-is/implementation.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/vfile/lib/minurl.browser.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./src/mdast2docx/handlers/thematicBreak.js ***!
+  \**************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/raw.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/bmp.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/cur.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/dds.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/gif.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/ico.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/j2c.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/jp2.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/jpg.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/ktx.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/png.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/pnm.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/psd.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/svg.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/image-size/dist/types/tga.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/inherits/inherits_browser.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/mdast-util-phrasing/index.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/parse5/lib/common/doctype.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/parse5/lib/common/unicode.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/trim-trailing-lines/index.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/unist-util-position/index.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/vfile/lib/minpath.browser.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/vfile/lib/minproc.browser.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./src/mdast2docx/handlers/characterStyle.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./src/mdast2docx/handlers/paragraphStyle.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./src/mdast2docx/hast-table-cell-handler.js ***!
+  \***************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/hast-util-is-element/index.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/text.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/tree.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/all.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/one.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/hast-util-whitespace/index.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/image-size/dist/types/icns.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/image-size/dist/types/tiff.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/image-size/dist/types/webp.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/mdast-util-to-string/index.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/object-keys/implementation.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/parse5/lib/tokenizer/index.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/property-information/index.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/unist-util-generated/index.js ***!
+  \****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/index.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/is-generator-function/index.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/wrap.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/micromark-util-encode/index.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/micromark-util-symbol/codes.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/micromark-util-symbol/types.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/core.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/unist-util-find-after/index.js ***!
+  \*****************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/assert/build/internal/errors.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/available-typed-arrays/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/comma-separated-tokens/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/function-bind/implementation.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/hast-util-has-property/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/mdast-util-definitions/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/micromark-util-symbol/values.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/constructs.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/preprocess.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/property-information/lib/svg.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/property-information/lib/xml.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/space-separated-tokens/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/index.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/util/support/isBufferBrowser.js ***!
+  \******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/comment.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/doctype.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/mdast-util-gfm-footnote/index.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/footer.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/revert.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm/index.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/postprocess.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/parse5/lib/common/error-codes.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/property-information/lib/aria.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/property-information/lib/find.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/property-information/lib/html.js ***!
+  \*******************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/character-entities-html4/index.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/has-property-descriptors/index.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/hast-util-parse-selector/index.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/mdast-util-gfm-table/lib/index.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/parse5/lib/utils/merge-options.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/property-information/lib/xlink.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/property-information/lib/xmlns.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/rehype-minify-whitespace/block.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/rehype-minify-whitespace/index.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/unist-util-visit-parents/index.js ***!
+  \********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/character-entities-legacy/index.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/hast-util-from-parse5/lib/index.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/hast-util-is-body-ok-link/index.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/constants.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/own.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/traverse.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/micromark-util-symbol/constants.js ***!
+  \*********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/wrap.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/micromark-util-chunked/dev/index.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/micromark-util-resolve-all/index.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/parse5/lib/tree-adapters/default.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/rehype-minify-whitespace/content.js ***!
+  \**********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/a.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/p.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/q.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/micromark-factory-label/dev/index.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/micromark-factory-space/dev/index.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/micromark-factory-title/dev/index.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/initialize/flow.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/initialize/text.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/parse5/lib/common/foreign-content.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/parse5/lib/tokenizer/preprocessor.js ***!
+  \***********************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/br.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/dl.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/em.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/hr.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/li.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/mdast-util-gfm-strikethrough/index.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/micromark-util-character/dev/index.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/micromark-util-html-tag-name/index.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/create-tokenizer.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/property-information/lib/normalize.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/info.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/rehype-minify-whitespace/skippable.js ***!
+  \************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/del.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/img.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/wbr.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/resolve.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/mdast-util-gfm-task-list-item/index.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/merge.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/types.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/unist-util-stringify-position/index.js ***!
+  \*************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/omission/index.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/base.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/code.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/list.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/root.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/text.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/code.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/html.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/link.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/list.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/root.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/text.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/safe.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/micromark-util-subtokenize/dev/index.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/initialize/content.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/parse5/lib/parser/open-element-stack.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/create.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/schema.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/util/to-named.js ***!
+  \**************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/index.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/input.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/media.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/table.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/wrap-text.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/mdast-util-find-and-replace/lib/index.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/mdast-util-gfm-autolink-literal/index.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/break.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/image.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/index.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/table.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/track.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/micromark-util-sanitize-uri/dev/index.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/micromark/dev/lib/initialize/document.js ***!
+  \***************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/assert/build/internal/util/comparisons.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/omission/closing.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/omission/opening.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/iframe.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/select.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/strong.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/mdast-util-from-markdown/dev/lib/index.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/delete.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/strong.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/handle/code.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/handle/text.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/list.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/micromark-factory-whitespace/dev/index.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/micromark-util-decode-string/dev/index.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/parse5/lib/tokenizer/named-entity-data.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/property-information/lib/hast-to-react.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/util/to-decimal.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/unist-util-visit-parents/color.browser.js ***!
+  \****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/index.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/omission/omission.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/comment.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/heading.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/heading.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-tagfilter/index.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/micromark-factory-destination/dev/index.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/micromark-util-combine-extensions/index.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/unified/node_modules/is-plain-obj/index.js ***!
+  \*****************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/textarea.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/emphasis.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/footnote.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/util/format-basic.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/util/format-smart.js ***!
+  \******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/table-row.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/wrap-children.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/list-item.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/paragraph.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/content.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/parse5/lib/parser/formatting-element-list.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/constant/dangerous.js ***!
+  \*******************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/decode-named-character-reference/index.dom.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/blockquote.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/table-cell.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/blockquote.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/autolink.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-table/dev/lib/html.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/defined-info.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/stringify-entities/lib/util/to-hexadecimal.js ***!
+  \********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/omission/util/comment.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/handlers/inline-code.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/wrap-list-items.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/hastscript/lib/svg-case-sensitive-tag-names.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/inline-code.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/handle/list-item.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/association.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/check-fence.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/attention.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/code-text.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/html-flow.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/html-text.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/label-end.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/micromark-util-classify-character/dev/index.js ***!
+  \*********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/assert/build/internal/assert/assertion_error.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/es-abstract/helpers/getOwnPropertyDescriptor.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/omission/util/siblings.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/check-bullet.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/indent-lines.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/blank-line.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/definition.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-table/dev/lib/syntax.js ***!
+  \**********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/list-items-spread.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/handle/inline-code.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/block-quote.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/code-fenced.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/heading-atx.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/line-ending.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-footnote/dev/lib/html.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/micromark-util-normalize-identifier/dev/index.js ***!
+  \***********************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/matter/index.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/matter/types.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/link-reference.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/thematic-break.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/container-flow.js ***!
+  \************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/matter/syntax.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/image-reference.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/pattern-compile.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/code-indented.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-footnote/dev/lib/syntax.js ***!
+  \*************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/pattern-in-scope.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/thematic-break.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/error-reporting/mixin-base.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/location-info/parser-mixin.js ***!
+  \**************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/gridtable/index.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/gridtable/types.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/hast-util-to-mdast/lib/util/find-selected-options.js ***!
+  \***************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/gridtable/syntax.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-hast/lib/handlers/footnote-reference.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/container-phrasing.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/character-escape.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/label-start-link.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/setext-underline.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-strikethrough/dev/lib/html.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/error-reporting/parser-mixin.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/unist-util-find/node_modules/unist-util-is/convert.js ***!
+  \****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-dereference.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-shared-process-queue/src/process-queue.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/hard-break-escape.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/label-start-image.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-task-list-item/dev/lib/html.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/location-info/tokenizer-mixin.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/unist-util-find/node_modules/unist-util-visit/index.js ***!
+  \*****************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/matter/to-markdown.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/hast-util-to-html/lib/omission/util/whitespace-start.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-strikethrough/dev/lib/syntax.js ***!
+  \******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-fix-code-flow.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-robust-tables.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-sanitize-text.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/micromark-core-commonmark/dev/lib/character-reference.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-autolink-literal/dev/lib/html.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-task-list-item/dev/lib/syntax.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/error-reporting/tokenizer-mixin.js ***!
+  \*******************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/matter/from-markdown.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/matter/remark-plugin.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-sanitize-links.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/check-list-item-indent.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/case-sensitive-transform.js ***!
+  \********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/gridtable/to-markdown.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/mdast-util-to-markdown/lib/util/format-code-as-indented.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/micromark-extension-gfm-autolink-literal/dev/lib/syntax.js ***!
+  \*********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-image-references.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-sanitize-formats.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-sanitize-heading.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/error-reporting/preprocessor-mixin.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/property-information/lib/util/case-insensitive-transform.js ***!
+  \**********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/gridtable/from-markdown.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/gridtable/remark-plugin.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/remark-breaks-as-spaces.js ***!
+  \***********************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-suppress-spacecode.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/micromark-util-character/dev/lib/unicode-punctuation-regex.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/position-tracking/preprocessor-mixin.js ***!
+  \************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/micromark-util-decode-numeric-character-reference/dev/index.js ***!
+  \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/unist-util-find/node_modules/unist-util-visit-parents/index.js ***!
+  \*************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/parse5/lib/extensions/location-info/open-element-stack-mixin.js ***!
+  \**************************************************************************************/
+
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/gridtable/mdast2hast-handler.js ***!
+  \****************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@adobe/helix-markdown-support/src/mdast-sanitize-text-and-formats.js ***!
+  \*******************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/mdast-util-find-and-replace/node_modules/escape-string-regexp/index.js ***!
+  \*********************************************************************************************/
+
+/**
+ * @author Richard Smith-Unna
+ * @copyright 2016 Richard Smith-Unnar
+ * @license MIT
+ * @module unist:find
+ * @fileoverview Unist node finder
+ */
+
+/**
+ * @license React
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**!
+ * Sortable 1.15.0
+ * @author	RubaXa   <trash@rubaxa.org>
+ * @author	owenm    <owen23355@gmail.com>
+ * @license MIT
+ */
