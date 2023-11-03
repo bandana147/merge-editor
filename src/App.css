@@ -2,6 +2,18 @@
   margin: auto;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #a7a0a0;
+  padding: 4px;
+}
+
 .elem-wrap {
   position: relative;
   cursor: grab;
@@ -20,6 +32,13 @@
 
 .preview-container .elem-wrap {
   margin: 4px;
+  border: 1px solid #a7a0a0;
+}
+
+.preview-container table,
+th,
+td {
+  border: 0;
 }
 
 .collapsed .elem-wrap .toolbox {
@@ -104,18 +123,6 @@
 
 .block-container .elem-wrap.highlight {
   border-color:pink;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table,
-th,
-td {
-  border: 1px solid #a7a0a0;
-  padding: 4px;
 }
 
 img {

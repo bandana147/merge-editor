@@ -88,7 +88,8 @@ function App() {
   }
 
   async function onSave() {
-    const children = hast.children.map(node => node.child);
+    const children = hast.children.filter(child => child.hash.type !== 'deleted' ).map(node => node.child);
+
     const mdast = toMdast({ ...hast, children }, {
       handlers: {
         ...defaultHandlers,
