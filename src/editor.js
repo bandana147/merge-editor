@@ -112,7 +112,6 @@ export async function md2html(path1, path2) {
   const mdast2 = await getMdast(path2);
   const processedMdast2 = getProcessedMdast(mdast2);
   const mdast = getMergedMdast(processedMdast1, processedMdast2, hashArray);
-
   const hast = mdast2hast(mdast, {
     handlers: {
       ...defaultHandlers,
@@ -120,6 +119,7 @@ export async function md2html(path1, path2) {
     },
     allowDangerousHtml: true,
   });
+  console.log(hast);
 
   raw(hast);
   hast.children = hast.children.filter(child => !(child.type === 'text' && child.value === '\n'))
@@ -131,5 +131,5 @@ export async function md2html(path1, path2) {
       };
     });
 
-  return { hast, hashArray};
+  return hast;
 }

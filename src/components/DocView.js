@@ -58,7 +58,7 @@ export default function DocView({ blocks, setBlocks, isPreview, noResultFound })
 
     return (
       <div onClick={() => { onClickBlock(node.uuid)}} id={node.uuid} key={node.uuid} className={`elem-wrap ${mergeType ? mergeType : 'orig'}`}>
-        <div dangerouslySetInnerHTML={{ __html: elem }} />
+        <div className={isPreview ? 'show-border' : '' } dangerouslySetInnerHTML={{ __html: elem }} />
         {mergeType && !isPreview && (<div className='toolbox'>
           <div onClick={() => { onReject(node.uuid, index, mergeType) }} className='icon cross-icon'><Close/></div>
           <div onClick={() => { onAccept(node.uuid, index, mergeType) }} className='icon right-icon'><Tick/></div>

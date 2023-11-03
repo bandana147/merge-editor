@@ -3,8 +3,32 @@ import { md2html } from './editor.js';
 import DocView from './components/DocView.js';
 import Header from './components/Header.js';
 import { mdast2docx } from './libs/mdast2docx.bundle.js';
-import { toMdast } from 'hast-util-to-mdast';
+import { defaultHandlers, toMdast } from 'hast-util-to-mdast';
+import hast_table_handle from './handlers/hast-table-handler.js';
+import hast_table_cell_handler from './handlers/hast-table-cell-handler.js';
+
 import './App.css';
+
+function findBlockName(obj) {
+  if (Array.isArray(obj)) {
+    if (obj.length > 0) {
+      return findBlockName(obj[0]);
+    }
+  } else if (typeof obj === 'object') {
+    if (obj.hasOwnProperty('value')) {
+      return obj.value;
+    }
+    for (const key in obj) {
+      if (typeof obj[key] === 'object' || Array.isArray(obj[key])) {
+        const result = findBlockName(obj[key]);
+        if (result) {
+          return result;
+        }
+      }
+    }
+  }
+  return '';
+}
 
 function App() {
   const [collapsed, setCollasped] = useState(false)
@@ -16,18 +40,18 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      const data = await md2html("files/langstore", "files/region");
-      setHast(data.hast);
-      const blocks = data.hast.children.reduce((acc, curr) => {
+      const hast = await md2html("files/langstore", "files/region");
+      setHast(hast);
+      const blocks = hast.children.reduce((acc, curr) => {
         if (curr.child.tagName === 'table') {
-          const block = curr.child.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0].value;
+          const block = findBlockName(curr);
           const blockName = block.split(' (');
           acc.push(blockName[0]);
         }
         return acc;
       }, []);
       const uniqueBlocks = [...new Set(blocks)];
-      setBlockTypes(uniqueBlocks)
+      setBlockTypes(uniqueBlocks);
     }
     getData();
   }, []);
@@ -48,10 +72,37 @@ function App() {
     document.querySelector('#doc').style.transform = `scale(${newScale})`;
   }
 
+  function formatHandler(type) {
+    return (state, node) => {
+      const result = { type, children: state.all(node) };
+      state.patch(node, result);
+      return result;
+    };
+  }
+
+  function mdHandler(mdasts) {
+    return (h, node) => {
+      const { idx } = node.properties;
+      return mdasts[idx];
+    };
+  }
+
   async function onSave() {
     const children = hast.children.map(node => node.child);
-    const unProcessedHast = toMdast({ ...hast, children });
-    const blob = await mdast2docx(unProcessedHast);
+    const mdast = toMdast({ ...hast, children }, {
+      handlers: {
+        ...defaultHandlers,
+        u: formatHandler('underline'),
+        sub: formatHandler('subScript'),
+        sup: formatHandler('superScript'),
+        table: hast_table_handle,
+        markdown: mdHandler([]),
+        th: hast_table_cell_handler,
+        td: hast_table_cell_handler,
+      }
+    });
+    // const { mdast2docx } = await import(`${window.location.origin}/tools/loc/helix/mdast2docx.bundle.js`);
+    const blob = await mdast2docx(mdast);
     const blobUrl = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = blobUrl;
@@ -90,7 +141,7 @@ function App() {
           <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} />
         </div>
         <div className="collapsed preview-container">
-          <DocView blocks={node} setBlocks={setBlocks} isPreview={true} />
+          <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} isPreview={true} />
         </div>
       </div>
     </>

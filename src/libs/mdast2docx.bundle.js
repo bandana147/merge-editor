@@ -57574,16 +57574,16 @@ __webpack_required__.r(__webpack_exports__);
  * @typedef {import('unist').Node} Node
  * @typedef {import('vfile').VFileCompatible} VFileCompatible
  * @typedef {import('vfile').VFileValue} VFileValue
- * @typedef {import('..').Processor} Processor
- * @typedef {import('..').Plugin} Plugin
- * @typedef {import('..').Preset} Preset
- * @typedef {import('..').Pluggable} Pluggable
- * @typedef {import('..').PluggableList} PluggableList
- * @typedef {import('..').Transformer} Transformer
- * @typedef {import('..').Parser} Parser
- * @typedef {import('..').Compiler} Compiler
- * @typedef {import('..').RunCallback} RunCallback
- * @typedef {import('..').ProcessCallback} ProcessCallback
+ * @typedef {import('../index.js').Processor} Processor
+ * @typedef {import('../index.js').Plugin} Plugin
+ * @typedef {import('../index.js').Preset} Preset
+ * @typedef {import('../index.js').Pluggable} Pluggable
+ * @typedef {import('../index.js').PluggableList} PluggableList
+ * @typedef {import('../index.js').Transformer} Transformer
+ * @typedef {import('../index.js').Parser} Parser
+ * @typedef {import('../index.js').Compiler} Compiler
+ * @typedef {import('../index.js').RunCallback} RunCallback
+ * @typedef {import('../index.js').ProcessCallback} ProcessCallback
  *
  * @typedef Context
  * @property {Node} tree
@@ -57750,7 +57750,7 @@ function base() {
     return processor
 
     /**
-     * @param {import('..').Pluggable<unknown[]>} value
+     * @param {import('../index.js').Pluggable<unknown[]>} value
      * @returns {void}
      */
     function add(value) {
