@@ -57,16 +57,17 @@ function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSe
 
   return (
     <div id="topnav">
+      <div>Document.docx</div>
       <div className="nav-wrapper">
         <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close">
           {blockTypes.map(type => <Item key={type}>{type}</Item>)}
           <Item key="all">All</Item>
         </Picker>
         <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search' />
-        {/* <Picker placeholder='Select a theme' onSelectionChange={onSelectTheme} close>
+        <Picker placeholder='Select a theme' onSelectionChange={onSelectTheme} close>
           <Item key="light">Light</Item>
           <Item key="dark">Dark</Item>
-        </Picker> */}
+        </Picker>
         {collapsed? <ActionButton onClick={onToggleCollapse}><Maximize/></ActionButton> : <ActionButton onClick={onToggleCollapse}><Minimize/></ActionButton>}
         <ActionButton onClick={scaleDown}><Remove/></ActionButton>
         <ActionButton onClick={scaleUp}><Add/></ActionButton>

@@ -1,5 +1,5 @@
-#container {
-  margin: auto;
+body {
+  margin: 0;
 }
 
 table {
@@ -88,7 +88,8 @@ td, hr {
   z-index: 10000;
   top: 0;
   left: 0;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px;
   margin-bottom: 68px;
   background-color: #02040A;
@@ -178,10 +179,6 @@ hr {
   border: 1px solid #363B41;;
 }
 
-.toolbox .icon{
- border: 0;
-}
-
 .icon {
   font-size: 16px;
   width: 30px;
@@ -202,7 +199,6 @@ hr {
   width: 18px;
 }
 
-.content {
-  padding: 10px;
-  margin-top: 30px;
-}
+.toolbox .icon{
+  border: 0;
+ }

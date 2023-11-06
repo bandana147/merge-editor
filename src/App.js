@@ -4,7 +4,7 @@ import DocView from './components/DocView.js';
 import Header from './components/Header.js';
 import { mdast2docx } from './libs/mdast2docx.bundle.js';
 import { defaultHandlers, toMdast } from 'hast-util-to-mdast';
-import { useProvider } from '@adobe/react-spectrum';
+import { defaultTheme, Provider } from '@adobe/react-spectrum';
 
 import hast_table_handle from './handlers/hast-table-handler.js';
 import hast_table_cell_handler from './handlers/hast-table-cell-handler.js';
@@ -32,6 +32,8 @@ function findBlockName(obj) {
   return '';
 }
 
+const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
 function App({ onSelectTheme }) {
   const [collapsed, setCollasped] = useState(false)
   const [currentScale, setCurrentScale] = useState(1);
@@ -39,7 +41,7 @@ function App({ onSelectTheme }) {
   const [searchResult, setSearchResult] = useState([]);
   const [blockTypes, setBlockTypes] = useState([]);
   const [noResultFound, setNoResultFound] = useState(false);
-  const { colorScheme } = useProvider();
+  const [theme, setTheme] = useState(prefersDarkMode ? 'dark' : 'light');
 
   useEffect(() => {
     async function getData() {
@@ -118,6 +120,10 @@ function App({ onSelectTheme }) {
     setHast({ ...hast, children: blocks });
   }
 
+  function onSelectTheme(val) {
+    setTheme(val);
+  }
+
   let node = [];
   if (searchResult.length > 0) {
     searchResult.forEach(id => {
@@ -127,8 +133,9 @@ function App({ onSelectTheme }) {
   } else {
     node = hast.children || [];
   }
+
   return (
-    <>
+    <Provider theme={defaultTheme} colorScheme={theme}>
       <Header
         blockTypes={blockTypes}
         setSearchResult={setSearchResult}
@@ -141,7 +148,7 @@ function App({ onSelectTheme }) {
         onSave={onSave}
         onSelectTheme={onSelectTheme}
       />
-      <div id="doc" className={`${colorScheme} main-wrapper`}>
+      <div id="doc" className={`${theme} main-wrapper`}>
         <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>
           <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} />
         </div>
@@ -149,7 +156,7 @@ function App({ onSelectTheme }) {
           <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} isPreview={true} />
         </div>
       </div>
-    </>
+    </Provider>
   );
 }
 
