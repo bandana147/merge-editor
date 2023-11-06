@@ -4,6 +4,8 @@ import DocView from './components/DocView.js';
 import Header from './components/Header.js';
 import { mdast2docx } from './libs/mdast2docx.bundle.js';
 import { defaultHandlers, toMdast } from 'hast-util-to-mdast';
+import { useProvider } from '@adobe/react-spectrum';
+
 import hast_table_handle from './handlers/hast-table-handler.js';
 import hast_table_cell_handler from './handlers/hast-table-cell-handler.js';
 
@@ -30,13 +32,14 @@ function findBlockName(obj) {
   return '';
 }
 
-function App() {
+function App({ onSelectTheme }) {
   const [collapsed, setCollasped] = useState(false)
   const [currentScale, setCurrentScale] = useState(1);
   const [hast, setHast] = useState({});
   const [searchResult, setSearchResult] = useState([]);
   const [blockTypes, setBlockTypes] = useState([]);
   const [noResultFound, setNoResultFound] = useState(false);
+  const { colorScheme } = useProvider();
 
   useEffect(() => {
     async function getData() {
@@ -63,13 +66,13 @@ function App() {
   function scaleDown() {
     const newScale = currentScale - currentScale / 10;
     setCurrentScale(newScale);
-    document.querySelector('#doc').style.transform = `scale(${newScale})`;
+    document.querySelector('#block').style.transform = `scale(${newScale})`;
   }
 
   function scaleUp() {
     const newScale = currentScale + currentScale / 10;
     setCurrentScale(newScale);
-    document.querySelector('#doc').style.transform = `scale(${newScale})`;
+    document.querySelector('#block').style.transform = `scale(${newScale})`;
   }
 
   function formatHandler(type) {
@@ -136,9 +139,10 @@ function App() {
         allBlocks={hast.children}
         setNoResultFound={setNoResultFound}
         onSave={onSave}
+        onSelectTheme={onSelectTheme}
       />
-      <div id="doc" className='main-wrapper'>
-        <div className={`block-container ${collapsed ? 'collapsed' : ''}`}>
+      <div id="doc" className={`${colorScheme} main-wrapper`}>
+        <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>
           <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} />
         </div>
         <div className="collapsed preview-container">

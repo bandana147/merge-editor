@@ -4,8 +4,7 @@ import Minimize from '@spectrum-icons/workflow/Minimize';
 import Add from '@spectrum-icons/workflow/Add';
 import Remove from '@spectrum-icons/workflow/Remove';
 
-function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSearchResult, onToggleCollapse, scaleDown, scaleUp, onSave }) {
-
+function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSearchResult, onToggleCollapse, scaleDown, scaleUp, onSave, onSelectTheme }) {
   function searchWordInAST(ast, targetWord, foundNodes, parentId = null) {
     for (const node of ast) {
       if (node.type === 'text') {
@@ -64,6 +63,10 @@ function Header({ allBlocks = [], setNoResultFound, blockTypes, collapsed, setSe
           <Item key="all">All</Item>
         </Picker>
         <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search' />
+        {/* <Picker placeholder='Select a theme' onSelectionChange={onSelectTheme} close>
+          <Item key="light">Light</Item>
+          <Item key="dark">Dark</Item>
+        </Picker> */}
         {collapsed? <ActionButton onClick={onToggleCollapse}><Maximize/></ActionButton> : <ActionButton onClick={onToggleCollapse}><Minimize/></ActionButton>}
         <ActionButton onClick={scaleDown}><Remove/></ActionButton>
         <ActionButton onClick={scaleUp}><Add/></ActionButton>
