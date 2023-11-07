@@ -34,7 +34,7 @@ function findBlockName(obj) {
 
 const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-function App({ onSelectTheme }) {
+function App() {
   const [collapsed, setCollasped] = useState(false)
   const [currentScale, setCurrentScale] = useState(1);
   const [hast, setHast] = useState({});
@@ -107,7 +107,6 @@ function App({ onSelectTheme }) {
         td: hast_table_cell_handler,
       }
     });
-    // const { mdast2docx } = await import(`${window.location.origin}/tools/loc/helix/mdast2docx.bundle.js`);
     const blob = await mdast2docx(mdast);
     const blobUrl = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -147,6 +146,7 @@ function App({ onSelectTheme }) {
         setNoResultFound={setNoResultFound}
         onSave={onSave}
         onSelectTheme={onSelectTheme}
+        theme={theme}
       />
       <div id="doc" className={`${theme} main-wrapper`}>
         <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>

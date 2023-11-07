@@ -70,10 +70,6 @@ td, hr {
   overflow: auto;
 }
 
-.preview-container hr {
-  display: none;
-}
-
 .preview-container h3, p {
   margin: 0;
   height: 20px;
