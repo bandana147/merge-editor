@@ -3,24 +3,13 @@ import { ReactSortable } from "react-sortablejs";
 import Close from '@spectrum-icons/workflow/Close';
 import Tick from '@spectrum-icons/workflow/Checkmark';
 
-export default function DocView({ blocks, setBlocks, isPreview, noResultFound }) {
+export default function DocView({ blocks, addNode, removeNode, isPreview, noResultFound, onUpdateList }) {
  
-  function removeNode(id) {
-    const newBlocks = blocks.filter(child => child.uuid !== id);
-    setBlocks(newBlocks);
-  }
-
-  function addNode(index) {
-    const newBlocks = blocks.slice();
-    delete newBlocks[index]?.hash?.type;
-    setBlocks(newBlocks);
-  }
-
   function onAccept(id, index, mergeType) {
     if (mergeType === 'deleted') {
       removeNode(id, index);
     } else {
-      addNode(index);
+      addNode(id, index);
     }
   }
 
@@ -30,14 +19,6 @@ export default function DocView({ blocks, setBlocks, isPreview, noResultFound })
     } else {
       removeNode(id, index);
     }
-  }
-
-  function onUpdateList(evt) {
-    const newBlocks = blocks.slice();
-    const currentElem = newBlocks[evt.oldIndex];
-    newBlocks[evt.oldIndex] = newBlocks[evt.newIndex];
-    newBlocks[evt.newIndex] = currentElem;
-    setBlocks(newBlocks);
   }
 
   function onClickBlock(uuid) {

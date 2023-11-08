@@ -61,6 +61,44 @@ function App() {
     getData();
   }, []);
 
+  function removeNode(id) {
+    const newBlocks = hast.children.filter(child => child.uuid !== id);
+    setBlocks(newBlocks);
+    if (searchResult.length > 0) {
+      const newSearchRes = searchResult.filter(child => child.uuid !== id);
+      setSearchResult(newSearchRes);
+    }
+  }
+
+  function addNode(id, index) {
+    const elemIdx = hast.children.findIndex(item => item.uuid === id);
+    const newBlocks = hast.children.slice();
+    delete newBlocks[elemIdx]?.hash?.type;
+    setBlocks(newBlocks);
+    if (searchResult.length > 0) {
+      const newSearchRes = searchResult.slice();
+      delete newSearchRes[index]?.hash?.type;
+      setSearchResult(newSearchRes);
+    }
+  }
+
+  function onUpdateList(evt) {
+    const newBlocks = hast.children.slice();
+    const currentElem = newBlocks[evt.oldIndex];
+    newBlocks[evt.oldIndex] = newBlocks[evt.newIndex];
+    newBlocks[evt.newIndex] = currentElem;
+    setBlocks(newBlocks);
+  }
+
+  function setSearchBlocks(res) {
+    const searchResults = []
+    res.forEach(id => {
+      const curItem = hast.children.find(n => n.uuid === id);
+      searchResults.push(curItem)
+    });
+    setSearchResult(searchResults);
+  }
+
   function onToggleCollapse() {
     setCollasped(!collapsed);
   }
@@ -93,7 +131,7 @@ function App() {
   }
 
   async function onSave() {
-    const children = hast.children.filter(child => child.hash.type !== 'deleted' ).map(node => node.child);
+    const children = hast.children.filter(child => child.hash.type !== 'deleted').map(node => node.child);
 
     const mdast = toMdast({ ...hast, children }, {
       handlers: {
@@ -123,21 +161,23 @@ function App() {
     setTheme(val);
   }
 
-  let node = [];
-  if (searchResult.length > 0) {
-    searchResult.forEach(id => {
-      const curItem = hast.children.find(n => n.uuid === id);
-      node.push(curItem)
-    })
-  } else {
-    node = hast.children || [];
+  function getCurrBlocks() {
+    let node = [];
+    if (searchResult.length > 0) {
+      node = searchResult;
+    } else {
+      node = hast.children || [];
+    }
+    return node;
   }
+
+  const node = getCurrBlocks();
 
   return (
     <Provider theme={defaultTheme} colorScheme={theme}>
       <Header
         blockTypes={blockTypes}
-        setSearchResult={setSearchResult}
+        setSearchResult={setSearchBlocks}
         scaleDown={scaleDown}
         scaleUp={scaleUp}
         onToggleCollapse={onToggleCollapse}
@@ -150,10 +190,10 @@ function App() {
       />
       <div id="doc" className={`${theme} main-wrapper`}>
         <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>
-          <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} />
+          <DocView blocks={node} noResultFound={noResultFound} onUpdateList={onUpdateList} removeNode={removeNode} addNode={addNode} />
         </div>
         <div className="collapsed preview-container">
-          <DocView blocks={node} setBlocks={setBlocks} noResultFound={noResultFound} isPreview={true} />
+          <DocView blocks={node} noResultFound={noResultFound} onUpdateList={onUpdateList} isPreview={true} />
         </div>
       </div>
     </Provider>

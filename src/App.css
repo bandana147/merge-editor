@@ -4,6 +4,8 @@ body {
 
 table {
   width: 100%;
+  table-layout: fixed;
+  overflow: hidden;
   border-collapse: collapse;
 }
 
@@ -31,14 +33,37 @@ td {
 }
 
 .preview-container .elem-wrap {
-  margin: 4px;
+  margin: 8px 6px;
   border: 1px solid #a7a0a0;
 }
 
-.preview-container table,
-th,
-td, hr {
+.preview-container table  {
   border: 0;
+}
+
+.preview-container td  {
+  border: 0;
+}
+
+.preview-container hr  {
+  margin: 4px;
+}
+
+.preview-container p, .preview-container h3, .preview-container strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 4px;
+  margin: 0;
+  height: 20px;
+}
+
+.preview-container a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .collapsed .elem-wrap .toolbox {
@@ -70,12 +95,6 @@ td, hr {
   overflow: auto;
 }
 
-.preview-container h3, p {
-  margin: 0;
-  height: 20px;
-  overflow: hidden;
-}
-
 #topnav {
   display: flex;
   position: fixed;
@@ -92,6 +111,11 @@ td, hr {
   border-bottom: 1px solid #21262C;
 }
 
+#topnav.light {
+  background-color: #efeff1;
+  border-bottom: 1px solid #d1d5da;
+}
+
 #root {
   background-color: #0E1117;
 }
@@ -105,17 +129,22 @@ td, hr {
 
 .main-wrapper {
   max-width: 100%;
-  margin: 56px 0 0 180px;
+  margin: 56px 0 0 296px;
   transform-origin: top left;
   transform: scale(1);
   display: flex;
   justify-content: space-between;
   height: 100vh;
   overflow: scroll;
+  padding-top: 20px;
 }
 
 .block-container {
-  width: 1024px;
+  width: 696px;
+  box-shadow: 3px 5px 5px rgb(0 0 0 / 7%), 3px 7.8px 15px rgb(0 0 0 / 9%), 3px 8px 13px rgb(0 0 0 / 12%);
+  border-radius: 4px;
+  height: fit-content;
+  padding: 80px 60px;
 }
 
 .block-container .elem-wrap.highlight {
@@ -160,6 +189,20 @@ hr {
 
 .light .deleted {
   background-color: #ffebe9;
+}
+
+.light .main-wrapper {
+  background-color: #f3f3f3;
+}
+
+.light .block-container {
+  background: #fff;
+  border: 1px solid #d4cbcb;
+}
+
+.dark .block-container {
+  background-color: #262626;
+  border: 1px solid #666666;
 }
 
 .elem-wrap:hover .toolbox:not(.selected) {

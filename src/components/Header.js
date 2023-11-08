@@ -55,13 +55,34 @@ function Header({
     }
   }
 
+  function findBlockName(obj) {
+    if (Array.isArray(obj)) {
+      if (obj.length > 0) {
+        return findBlockName(obj[0]);
+      }
+    } else if (typeof obj === 'object') {
+      if (obj.hasOwnProperty('value')) {
+        return obj.value;
+      }
+      for (const key in obj) {
+        if (typeof obj[key] === 'object' || Array.isArray(obj[key])) {
+          const result = findBlockName(obj[key]);
+          if (result) {
+            return result;
+          }
+        }
+      }
+    }
+    return '';
+  }
+
   function onSelectBlock(searchKeyword) {
     setSelectedBlock(searchKeyword);
     const miloBlocks = allBlocks.filter(block => {
       return block.child.tagName === 'table';
     });
     const foundNodes = miloBlocks.reduce((acc, curr) => {
-      const block = curr.child.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0].value;
+      const block = findBlockName(curr);
       const blockName = block.split(' (');
       if (searchKeyword === blockName[0]) {
         acc.push(curr.uuid);
@@ -72,7 +93,7 @@ function Header({
   }
 
   return (
-    <div id="topnav">
+    <div id="topnav" className={theme}>
       <div>Document.docx</div>
       <div className="nav-wrapper">
         <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close" selectedKey={selectedBlock}>
