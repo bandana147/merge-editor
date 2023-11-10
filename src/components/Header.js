@@ -3,9 +3,10 @@ import { SearchField, Picker, Item, ActionButton, RangeSlider } from '@adobe/rea
 import Maximize from '@spectrum-icons/workflow/Maximize';
 import Minimize from '@spectrum-icons/workflow/Minimize';
 import AcceptReject from './AcceptReject';
+import { findBlockName } from '../App.js';
 
 function Header({
-  allBlocks = [],
+  blocks = [],
   setNoResultFound,
   blockTypes,
   collapsed,
@@ -14,13 +15,15 @@ function Header({
   onSave,
   onSelectTheme,
   theme,
-  onAcceptAll,
-  onRejectAll,
+  onChangeRange,
   onSelectViewType,
-  viewType
+  viewType,
+  searchResult,
 }) {
 
   const [selectedBlock, setSelectedBlock] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+
   function searchWordInAST(ast, targetWord, foundNodes, parentId = null) {
     for (const node of ast) {
       if (node.type === 'text') {
@@ -37,49 +40,8 @@ function Header({
     }
   }
 
-  function onClearSearch() {
-    setNoResultFound(false);
-  }
-
-  function onChangeSearch(searchKeyword) {
-    if (searchKeyword.trim().length <= 0) {
-      setSearchResult([]);
-      return;
-    }
-    const foundNodes = [];
-    searchWordInAST(allBlocks, searchKeyword, foundNodes);
-    if (foundNodes.length > 0) {
-      setNoResultFound(false);
-      setSearchResult(foundNodes);
-    } else {
-      setNoResultFound(true);
-    }
-  }
-
-  function findBlockName(obj) {
-    if (Array.isArray(obj)) {
-      if (obj.length > 0) {
-        return findBlockName(obj[0]);
-      }
-    } else if (typeof obj === 'object') {
-      if (obj.hasOwnProperty('value')) {
-        return obj.value;
-      }
-      for (const key in obj) {
-        if (typeof obj[key] === 'object' || Array.isArray(obj[key])) {
-          const result = findBlockName(obj[key]);
-          if (result) {
-            return result;
-          }
-        }
-      }
-    }
-    return '';
-  }
-
-  function onSelectBlock(searchKeyword) {
-    setSelectedBlock(searchKeyword);
-    const miloBlocks = allBlocks.filter(block => {
+  function filterBlockInAST(blockNodes, searchKeyword) {
+    const miloBlocks = blockNodes.filter(block => {
       return block.child.tagName === 'table';
     });
     const foundNodes = miloBlocks.reduce((acc, curr) => {
@@ -89,21 +51,74 @@ function Header({
         acc.push(curr.uuid);
       }
       return acc;
-    }, [])
-    setSearchResult(foundNodes);
+    }, []);
+
+    return foundNodes;
+  }
+
+  function clearFilter() {
+    if (!searchTerm) {
+      const all = blocks.map(child => child.uuid);
+      setSearchResult(all);
+    } else {
+      onChangeSearch(searchTerm, true);
+    }
+  }
+
+  function onClearSearch() {
+    if (selectedBlock !== 'all') {
+      onSelectBlock(selectedBlock, true);
+    } else {
+      const all = blocks.map(child => child.uuid);
+      setSearchResult(all);
+    }
+  }
+
+  function onChangeSearch(searchKeyword, searchFromAll) {
+    const blockToSearchFrom = searchFromAll ? blocks : searchResult;
+    setSearchTerm(searchKeyword);
+    if (searchKeyword.trim().length <= 0) {
+      onClearSearch();
+    } else {
+      const foundNodes = [];
+      searchWordInAST(blockToSearchFrom, searchKeyword, foundNodes);
+      if (foundNodes.length > 0) {
+        setNoResultFound(false);
+        setSearchResult(foundNodes);
+      } else {
+        setNoResultFound(true);
+      }
+    }
+  }
+
+  function onSelectBlock(searchKeyword, searchFromAll) {
+    const blockToSearchFrom = searchFromAll ? blocks : searchResult;
+    setSelectedBlock(searchKeyword);
+    if (searchKeyword === 'all') {
+      clearFilter();
+    } else {
+      const foundNodes = filterBlockInAST(blockToSearchFrom, searchKeyword);
+      if (foundNodes.length > 0) {
+        setNoResultFound(false);
+        setSearchResult(foundNodes);
+      } else {
+        setNoResultFound(true);
+      }
+    }
   }
 
   return (
     <div id="topnav" className={theme}>
       <div>Document.docx</div>
-      {/* <AcceptReject
-        onAccept={onAcceptAll}
-        onReject={onRejectAll}
-        acceptLabel="Accept all"
-        rejectLabel="Reject all"
-      /> */}
       <div className="nav-wrapper">
-      <Picker placeholder='Select a theme' onSelectionChange={(val)=> { onSelectViewType(val) }} selectedKey={viewType} width={120}>
+        <RangeSlider
+          key={`range-${blocks.length}}`}
+          defaultValue={{ start: 1, end: blocks.length }}
+          minValue={1}
+          maxValue={blocks.length}
+          onChange={onChangeRange}
+        />
+        <Picker placeholder='Select a theme' onSelectionChange={(val) => { onSelectViewType(val) }} selectedKey={viewType} width={120}>
           <Item key="diffV1">Diff v1</Item>
           <Item key="diffV2">Diff v2</Item>
           <Item key="diffGroup">Diff group</Item>
@@ -114,7 +129,7 @@ function Header({
           {blockTypes.map(type => <Item key={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</Item>)}
           <Item key="all">All blocks</Item>
         </Picker>
-        <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search'  width={160}/>
+        <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search' width={160} />
         <Picker placeholder='Select a theme' onSelectionChange={onSelectTheme} selectedKey={theme} width={96}>
           <Item key="light">Light</Item>
           <Item key="dark">Dark</Item>

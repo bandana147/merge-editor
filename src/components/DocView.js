@@ -12,6 +12,7 @@ export default function DocView({
   noResultFound,
   onUpdateList,
   updateMerge,
+  hideAcceptRejectAll,
 }) {
 
   function onAccept(id, index, mergeType) {
@@ -23,7 +24,6 @@ export default function DocView({
   }
 
   function onReject(id, index, mergeType) {
-    debugger
     if (mergeType === 'deleted') {
       addNode(id, index);
     } else {
@@ -64,14 +64,14 @@ export default function DocView({
   }
 
   if (noResultFound) {
-    return <div class="not-found-message">No result found!</div>
+    return <div className="not-found-message">No result found!</div>
   }
 
   return (
     <ReactSortable list={blocks} setList={() => { }} onUpdate={onUpdateList}>
       <div className='accept-reject'>
         <AcceptReject
-          isHide={(isPreview || resolved || viewType !== 'diffV1') }
+          isHide={(hideAcceptRejectAll || viewType !== 'diffV1')}
           acceptLabel="Accept all"
           rejectLabel="Reject all"
           onAccept={()=> { updateMerge('added') }}

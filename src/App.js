@@ -12,7 +12,7 @@ import hast_table_cell_handler from './handlers/hast-table-cell-handler.js';
 import './App.css';
 import ScreenSize from './components/ScreenSize.js';
 
-function findBlockName(obj) {
+export function findBlockName(obj) {
   if (Array.isArray(obj)) {
     if (obj.length > 0) {
       return findBlockName(obj[0]);
@@ -41,9 +41,9 @@ function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [blockTypes, setBlockTypes] = useState([]);
   const [noResultFound, setNoResultFound] = useState(false);
-  const [resolved, setResolved] = useState(false);
   const [theme, setTheme] = useState(prefersDarkMode ? 'dark' : 'light');
   const [viewType, setViewType] = useState('diffV1');
+  const [hideAcceptRejectAll, setHideAcceptRejectAll] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -99,6 +99,7 @@ function App() {
       searchResults.push(curItem)
     });
     setSearchResult(searchResults);
+    setHideAcceptRejectAll(true);
   }
 
   function onToggleCollapse() {
@@ -145,6 +146,7 @@ function App() {
 
   function setBlocks(blocks) {
     setHast({ ...hast, children: blocks });
+    setHideAcceptRejectAll(true);
   }
 
   function onSelectTheme(val) {
@@ -170,7 +172,7 @@ function App() {
     }, []);
 
     setBlocks(children);
-    setResolved(true);
+    setHideAcceptRejectAll(true);
   }
 
   function onSelectViewType(val) {
@@ -198,42 +200,34 @@ function App() {
         viewType={viewType}
         collapsed={collapsed}
         blockTypes={blockTypes}
-        allBlocks={hast.children}
+        blocks={hast.children}
+        searchResult={node}
         setSearchResult={setSearchBlocks}
         onToggleCollapse={onToggleCollapse}
         setNoResultFound={setNoResultFound}
         onSelectTheme={onSelectTheme}
         onSelectViewType={onSelectViewType}
+        onChangeRange={onChangeRange}
       />
       <div id="doc" className={`${theme} main-wrapper`}>
         <div className='doc-container'>
           <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>
             <DocView
               blocks={node}
-              resolved={resolved}
               viewType={viewType}
               updateMerge={updateMerge}
               noResultFound={noResultFound}
               onUpdateList={onUpdateList}
               removeNode={removeNode}
               addNode={addNode}
+              hideAcceptRejectAll={hideAcceptRejectAll}
             />
           </div>
         </div>
         <div className="collapsed preview-container">
-          <DocView blocks={node} noResultFound={noResultFound} onUpdateList={onUpdateList} isPreview={true} />
+          <DocView hideAcceptRejectAll={true} blocks={node} noResultFound={noResultFound} onUpdateList={onUpdateList} isPreview={true} />
         </div>
       </div>
-      {hast.children?.length > 0 && <div className={`${theme} range-tool`}>
-        <RangeSlider
-          key={`range-${hast.children.length}}`}
-          label="Range"
-          defaultValue={{ start: 1, end: hast.children.length }}
-          minValue={1}
-          maxValue={hast.children.length}
-          onChange={onChangeRange}
-        />
-      </div>}
       <ScreenSize
         theme={theme}
       />
