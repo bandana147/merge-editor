@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { SearchField, Picker, Item, ActionButton, RangeSlider } from '@adobe/react-spectrum';
+import { SearchField, Picker, Item, ActionButton, RangeSlider, TagGroup } from '@adobe/react-spectrum';
 import Maximize from '@spectrum-icons/workflow/Maximize';
 import Minimize from '@spectrum-icons/workflow/Minimize';
-import AcceptReject from './AcceptReject';
 import { findBlockName } from '../App.js';
 
 function Header({
@@ -21,8 +20,8 @@ function Header({
   searchResult,
 }) {
 
-  const [selectedBlock, setSelectedBlock] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedBlocks, setSelectedBlocks] = useState([]);
 
   function searchWordInAST(ast, targetWord, foundNodes, parentId = null) {
     for (const node of ast) {
@@ -40,14 +39,15 @@ function Header({
     }
   }
 
-  function filterBlockInAST(blockNodes, searchKeyword) {
+  function filterBlockInAST(blockNodes, selectedKeys) {
+    const blockNames = selectedKeys.map(item=> item.key);
     const miloBlocks = blockNodes.filter(block => {
       return block.child.tagName === 'table';
     });
     const foundNodes = miloBlocks.reduce((acc, curr) => {
       const block = findBlockName(curr);
       const blockName = block.split(' (');
-      if (searchKeyword === blockName[0]) {
+      if (blockNames.includes(blockName[0])) {
         acc.push(curr.uuid);
       }
       return acc;
@@ -66,8 +66,9 @@ function Header({
   }
 
   function onClearSearch() {
-    if (selectedBlock !== 'all') {
-      onSelectBlock(selectedBlock, true);
+    if (selectedBlocks.length > 0 ) {
+      const foundNodes = filterBlockInAST(blocks, selectedBlocks);
+      setNewBlocks(foundNodes);
     } else {
       const all = blocks.map(child => child.uuid);
       setSearchResult(all);
@@ -75,41 +76,66 @@ function Header({
   }
 
   function onChangeSearch(searchKeyword, searchFromAll) {
-    const blockToSearchFrom = searchFromAll ? blocks : searchResult;
+    let blockToSearchFrom = (searchFromAll || selectedBlocks.length <= 0) ? blocks : searchResult;
     setSearchTerm(searchKeyword);
     if (searchKeyword.trim().length <= 0) {
       onClearSearch();
     } else {
       const foundNodes = [];
       searchWordInAST(blockToSearchFrom, searchKeyword, foundNodes);
-      if (foundNodes.length > 0) {
-        setNoResultFound(false);
-        setSearchResult(foundNodes);
-      } else {
-        setNoResultFound(true);
-      }
+      setNewBlocks(foundNodes);
     }
   }
 
-  function onSelectBlock(searchKeyword, searchFromAll) {
-    const blockToSearchFrom = searchFromAll ? blocks : searchResult;
-    setSelectedBlock(searchKeyword);
-    if (searchKeyword === 'all') {
+  function onSelectBlock(blockName) {
+    const newSelectedBlocks = selectedBlocks.slice();
+    newSelectedBlocks.push({ key: blockName, label: blockName });
+    setSelectedBlocks(newSelectedBlocks);
+    const blockToSearchFrom = !searchTerm ? blocks : searchResult;
+    const foundNodes = filterBlockInAST(blockToSearchFrom, newSelectedBlocks);
+    setNewBlocks(foundNodes);
+  }
+
+  function setNewBlocks(foundNodes) {
+    if (foundNodes.length > 0) {
+      setNoResultFound(false);
+      setSearchResult(foundNodes);
+    } else {
+      setNoResultFound(true);
+    }
+  }
+
+  function onRemove(items) {
+    const itemToRemove = Array.from(items)[0];
+    const elemIdx = selectedBlocks.findIndex(item => item.key === itemToRemove);
+    const newSelectedBlocks = selectedBlocks.slice();
+    newSelectedBlocks.splice(elemIdx, 1);
+    if (newSelectedBlocks.length <= 0) {
       clearFilter();
     } else {
-      const foundNodes = filterBlockInAST(blockToSearchFrom, searchKeyword);
-      if (foundNodes.length > 0) {
-        setNoResultFound(false);
-        setSearchResult(foundNodes);
-      } else {
-        setNoResultFound(true);
-      }
+      const foundNodes = filterBlockInAST(searchResult, newSelectedBlocks);
+      setNewBlocks(foundNodes);
     }
+    
+    setSelectedBlocks(newSelectedBlocks);
+  }
+
+  function renderTags() {
+    if (selectedBlocks.length <= 0) return null;
+    return <div className='tags-wrapper'>
+      <TagGroup
+        items={selectedBlocks}
+        onRemove={onRemove}
+        aria-label="Removable TagGroup example">
+        {item => <Item>{item.label}</Item>}
+      </TagGroup>
+    </div>
   }
 
   return (
     <div id="topnav" className={theme}>
       <div>Document.docx</div>
+      {renderTags()}
       <div className="nav-wrapper">
         <RangeSlider
           key={`range-${blocks.length}}`}
@@ -125,9 +151,8 @@ function Header({
           <Item key="langstore">Langstore</Item>
           <Item key="regional">Regional</Item>
         </Picker>
-        <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close" selectedKey={selectedBlock} width={160}>
+        <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close" width={160}>
           {blockTypes.map(type => <Item key={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</Item>)}
-          <Item key="all">All blocks</Item>
         </Picker>
         <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search' width={160} />
         <Picker placeholder='Select a theme' onSelectionChange={onSelectTheme} selectedKey={theme} width={96}>

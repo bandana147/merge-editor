@@ -4,7 +4,7 @@ import DocView from './components/DocView.js';
 import Header from './components/Header.js';
 import { mdast2docx } from './libs/mdast2docx.bundle.js';
 import { defaultHandlers, toMdast } from 'hast-util-to-mdast';
-import { defaultTheme, Provider, RangeSlider } from '@adobe/react-spectrum';
+import { defaultTheme, Provider } from '@adobe/react-spectrum';
 
 import hast_table_handle from './handlers/hast-table-handler.js';
 import hast_table_cell_handler from './handlers/hast-table-cell-handler.js';
@@ -44,6 +44,7 @@ function App() {
   const [theme, setTheme] = useState(prefersDarkMode ? 'dark' : 'light');
   const [viewType, setViewType] = useState('diffV1');
   const [hideAcceptRejectAll, setHideAcceptRejectAll] = useState(false);
+  const [selectedBlocks, setSelectedBlocks] = useState([]);
 
   useEffect(() => {
     async function getData() {
@@ -176,6 +177,7 @@ function App() {
   }
 
   function onSelectViewType(val) {
+    if (['diffV2', 'diffGroup'].includes(val)) return;
     const blocks = getCustomHast(val)
     setViewType(val);
     setHast(blocks);

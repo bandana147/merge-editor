@@ -33,7 +33,7 @@ td {
 }
 
 .preview-container .elem-wrap {
-  margin: 6px;
+  margin: 12px;
   border: 1px solid #a7a0a0;
 }
 
@@ -167,6 +167,7 @@ td {
   margin-top: 40px;
   margin: auto;
   position: relative;
+  transform-origin: 0 0;
 }
 
 .block-container .elem-wrap.highlight {
@@ -258,15 +259,16 @@ hr {
   width: 114px;
  }
 
- .range-tool {
-  border: 1px solid #d1c7c7;
+ .tags-wrapper {
+  /* border: 1px solid #d1c7c7; */
   border-radius: 4px;
   padding: 6px;
   position: fixed;
-  top: 60px;
+  top: 87px;
   left: 0;
   font-size: 10px;
   height: 40px;
+  width: 260px;
  }
 
  .dark.screen-tools, .dark.range-tool {
