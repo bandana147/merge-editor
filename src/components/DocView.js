@@ -1,10 +1,19 @@
 import { toHtml } from 'hast-util-to-html';
 import { ReactSortable } from "react-sortablejs";
-import Close from '@spectrum-icons/workflow/Close';
-import Tick from '@spectrum-icons/workflow/Checkmark';
+import AcceptReject from './AcceptReject';
 
-export default function DocView({ blocks, addNode, removeNode, isPreview, noResultFound, onUpdateList }) {
- 
+export default function DocView({
+  blocks,
+  viewType,
+  addNode,
+  resolved,
+  removeNode,
+  isPreview,
+  noResultFound,
+  onUpdateList,
+  updateMerge,
+}) {
+
   function onAccept(id, index, mergeType) {
     if (mergeType === 'deleted') {
       removeNode(id, index);
@@ -14,19 +23,21 @@ export default function DocView({ blocks, addNode, removeNode, isPreview, noResu
   }
 
   function onReject(id, index, mergeType) {
+    debugger
     if (mergeType === 'deleted') {
-      addNode(index);
+      addNode(id, index);
     } else {
       removeNode(id, index);
     }
   }
 
   function onClickBlock(uuid) {
+    if (!isPreview) return;
     const container = document.getElementById('doc');
     const elem = document.getElementById(uuid);
     elem.classList.add('highlight');
     container.scrollTop = elem.offsetTop - 20;
-    setTimeout(()=> {
+    setTimeout(() => {
       elem.classList.remove('highlight');
     }, 1200)
   }
@@ -38,11 +49,15 @@ export default function DocView({ blocks, addNode, removeNode, isPreview, noResu
     const mergeType = node.hash?.type;
 
     return (
-      <div onClick={() => { onClickBlock(node.uuid)}} id={node.uuid} key={node.uuid} className={`elem-wrap ${mergeType ? mergeType : 'orig'}`}>
+      <div onClick={() => { onClickBlock(node.uuid) }} id={node.uuid} key={node.uuid} className={`elem-wrap ${mergeType ? mergeType : 'orig'}`}>
         <div dangerouslySetInnerHTML={{ __html: elem }} />
         {mergeType && !isPreview && (<div className='toolbox'>
-          <div onClick={() => { onReject(node.uuid, index, mergeType) }} className='icon cross-icon'><Close/></div>
-          <div onClick={() => { onAccept(node.uuid, index, mergeType) }} className='icon right-icon'><Tick/></div>
+          <AcceptReject
+            acceptLabel="Accept"
+            rejectLabel="Reject"
+            onAccept={() => { onAccept(node.uuid, index, mergeType) }}
+            onReject={() => { onReject(node.uuid, index, mergeType) }}
+          />
         </div>)}
       </div>
     )
@@ -53,7 +68,16 @@ export default function DocView({ blocks, addNode, removeNode, isPreview, noResu
   }
 
   return (
-    <ReactSortable list={blocks} setList={()=>{}} onUpdate={onUpdateList}>
+    <ReactSortable list={blocks} setList={() => { }} onUpdate={onUpdateList}>
+      <div className='accept-reject'>
+        <AcceptReject
+          isHide={(isPreview || resolved || viewType !== 'diffV1') }
+          acceptLabel="Accept all"
+          rejectLabel="Reject all"
+          onAccept={()=> { updateMerge('added') }}
+          onReject={()=> { updateMerge('deleted') }}
+        />
+      </div>
       {blocks?.map((node, i) => renderDocNode(node, i))}
     </ReactSortable>
   )

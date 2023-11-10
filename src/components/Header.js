@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { SearchField, Picker, Item, ActionButton } from '@adobe/react-spectrum';
+import { SearchField, Picker, Item, ActionButton, RangeSlider } from '@adobe/react-spectrum';
 import Maximize from '@spectrum-icons/workflow/Maximize';
 import Minimize from '@spectrum-icons/workflow/Minimize';
-import Add from '@spectrum-icons/workflow/Add';
-import Remove from '@spectrum-icons/workflow/Remove';
+import AcceptReject from './AcceptReject';
 
 function Header({
   allBlocks = [],
@@ -12,14 +11,16 @@ function Header({
   collapsed,
   setSearchResult,
   onToggleCollapse,
-  scaleDown,
-  scaleUp,
   onSave,
   onSelectTheme,
   theme,
+  onAcceptAll,
+  onRejectAll,
+  onSelectViewType,
+  viewType
 }) {
 
-  const [ selectedBlock, setSelectedBlock ] = useState('all');
+  const [selectedBlock, setSelectedBlock] = useState('all');
   function searchWordInAST(ast, targetWord, foundNodes, parentId = null) {
     for (const node of ast) {
       if (node.type === 'text') {
@@ -95,19 +96,30 @@ function Header({
   return (
     <div id="topnav" className={theme}>
       <div>Document.docx</div>
+      {/* <AcceptReject
+        onAccept={onAcceptAll}
+        onReject={onRejectAll}
+        acceptLabel="Accept all"
+        rejectLabel="Reject all"
+      /> */}
       <div className="nav-wrapper">
-        <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close" selectedKey={selectedBlock}>
-          {blockTypes.map(type => <Item key={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</Item>)}
-          <Item key="all">All</Item>
+      <Picker placeholder='Select a theme' onSelectionChange={(val)=> { onSelectViewType(val) }} selectedKey={viewType} width={120}>
+          <Item key="diffV1">Diff v1</Item>
+          <Item key="diffV2">Diff v2</Item>
+          <Item key="diffGroup">Diff group</Item>
+          <Item key="langstore">Langstore</Item>
+          <Item key="regional">Regional</Item>
         </Picker>
-        <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search' />
-        <Picker placeholder='Select a theme' onSelectionChange={onSelectTheme} selectedKey={theme}>
+        <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close" selectedKey={selectedBlock} width={160}>
+          {blockTypes.map(type => <Item key={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</Item>)}
+          <Item key="all">All blocks</Item>
+        </Picker>
+        <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search'  width={160}/>
+        <Picker placeholder='Select a theme' onSelectionChange={onSelectTheme} selectedKey={theme} width={96}>
           <Item key="light">Light</Item>
           <Item key="dark">Dark</Item>
         </Picker>
         {collapsed ? <ActionButton onClick={onToggleCollapse}><Maximize /></ActionButton> : <ActionButton onClick={onToggleCollapse}><Minimize /></ActionButton>}
-        <ActionButton onClick={scaleDown}><Remove /></ActionButton>
-        <ActionButton onClick={scaleUp}><Add /></ActionButton>
         <ActionButton onClick={onSave}>Save</ActionButton>
       </div>
     </div>

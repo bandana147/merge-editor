@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-import { md2html } from './editor.js';
+import { md2html, getCustomHast } from './editor.js';
 import DocView from './components/DocView.js';
 import Header from './components/Header.js';
 import { mdast2docx } from './libs/mdast2docx.bundle.js';
 import { defaultHandlers, toMdast } from 'hast-util-to-mdast';
-import { defaultTheme, Provider } from '@adobe/react-spectrum';
+import { defaultTheme, Provider, RangeSlider } from '@adobe/react-spectrum';
 
 import hast_table_handle from './handlers/hast-table-handler.js';
 import hast_table_cell_handler from './handlers/hast-table-cell-handler.js';
 
 import './App.css';
+import ScreenSize from './components/ScreenSize.js';
 
 function findBlockName(obj) {
   if (Array.isArray(obj)) {
@@ -36,12 +37,13 @@ const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matche
 
 function App() {
   const [collapsed, setCollasped] = useState(false)
-  const [currentScale, setCurrentScale] = useState(1);
   const [hast, setHast] = useState({});
   const [searchResult, setSearchResult] = useState([]);
   const [blockTypes, setBlockTypes] = useState([]);
   const [noResultFound, setNoResultFound] = useState(false);
+  const [resolved, setResolved] = useState(false);
   const [theme, setTheme] = useState(prefersDarkMode ? 'dark' : 'light');
+  const [viewType, setViewType] = useState('diffV1');
 
   useEffect(() => {
     async function getData() {
@@ -103,18 +105,6 @@ function App() {
     setCollasped(!collapsed);
   }
 
-  function scaleDown() {
-    const newScale = currentScale - currentScale / 10;
-    setCurrentScale(newScale);
-    document.querySelector('#block').style.transform = `scale(${newScale})`;
-  }
-
-  function scaleUp() {
-    const newScale = currentScale + currentScale / 10;
-    setCurrentScale(newScale);
-    document.querySelector('#block').style.transform = `scale(${newScale})`;
-  }
-
   function formatHandler(type) {
     return (state, node) => {
       const result = { type, children: state.all(node) };
@@ -161,6 +151,34 @@ function App() {
     setTheme(val);
   }
 
+  function onChangeRange(val) {
+    const newBlocks = hast.children.slice(val.start - 1, val.end - 1);
+    setSearchResult(newBlocks);
+  }
+
+  function updateMerge(mergeType) {
+    const children = hast.children.reduce((acc, curr) => {
+      if (curr.hash.type) {
+        if (curr.hash.type === mergeType) {
+          delete curr.hash.type;
+          acc.push(curr);
+        }
+      } else {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
+
+    setBlocks(children);
+    setResolved(true);
+  }
+
+  function onSelectViewType(val) {
+    const blocks = getCustomHast(val)
+    setViewType(val);
+    setHast(blocks);
+  }
+
   function getCurrBlocks() {
     let node = [];
     if (searchResult.length > 0) {
@@ -172,30 +190,53 @@ function App() {
   }
 
   const node = getCurrBlocks();
-
   return (
     <Provider theme={defaultTheme} colorScheme={theme}>
       <Header
-        blockTypes={blockTypes}
-        setSearchResult={setSearchBlocks}
-        scaleDown={scaleDown}
-        scaleUp={scaleUp}
-        onToggleCollapse={onToggleCollapse}
-        collapsed={collapsed}
-        allBlocks={hast.children}
-        setNoResultFound={setNoResultFound}
-        onSave={onSave}
-        onSelectTheme={onSelectTheme}
         theme={theme}
+        onSave={onSave}
+        viewType={viewType}
+        collapsed={collapsed}
+        blockTypes={blockTypes}
+        allBlocks={hast.children}
+        setSearchResult={setSearchBlocks}
+        onToggleCollapse={onToggleCollapse}
+        setNoResultFound={setNoResultFound}
+        onSelectTheme={onSelectTheme}
+        onSelectViewType={onSelectViewType}
       />
       <div id="doc" className={`${theme} main-wrapper`}>
-        <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>
-          <DocView blocks={node} noResultFound={noResultFound} onUpdateList={onUpdateList} removeNode={removeNode} addNode={addNode} />
+        <div className='doc-container'>
+          <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>
+            <DocView
+              blocks={node}
+              resolved={resolved}
+              viewType={viewType}
+              updateMerge={updateMerge}
+              noResultFound={noResultFound}
+              onUpdateList={onUpdateList}
+              removeNode={removeNode}
+              addNode={addNode}
+            />
+          </div>
         </div>
         <div className="collapsed preview-container">
           <DocView blocks={node} noResultFound={noResultFound} onUpdateList={onUpdateList} isPreview={true} />
         </div>
       </div>
+      {hast.children?.length > 0 && <div className={`${theme} range-tool`}>
+        <RangeSlider
+          key={`range-${hast.children.length}}`}
+          label="Range"
+          defaultValue={{ start: 1, end: hast.children.length }}
+          minValue={1}
+          maxValue={hast.children.length}
+          onChange={onChangeRange}
+        />
+      </div>}
+      <ScreenSize
+        theme={theme}
+      />
     </Provider>
   );
 }

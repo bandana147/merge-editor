@@ -5,6 +5,11 @@ import parseMarkdown from './libs/parseMarkdown.bundle.js';
 import objectHash from 'object-hash';
 import { v4 as uuidv4 } from 'uuid';
 
+let mergedMdast = {};
+let langstoreMdast = {};
+let regionalMdast = {};
+let hashArray = [];
+
 export async function getMdastFromMd(mdContent) {
   const state = { content: { data: mdContent }, log: '' };
   await parseMarkdown(state);
@@ -105,13 +110,20 @@ function getMergedMdast(langstoreNowProcessedMdast, livecopyProcessedMdast, hash
   return mergedMdast;
 }
 
-export async function md2html(path1, path2) {
-  const hashArray = [];
-  const mdast1 = await getMdast(path1);
-  const processedMdast1 = getProcessedMdast(mdast1);
-  const mdast2 = await getMdast(path2);
-  const processedMdast2 = getProcessedMdast(mdast2);
-  const mdast = getMergedMdast(processedMdast1, processedMdast2, hashArray);
+export function getCustomHast(type) {
+  let mdast;
+  if (type === 'regional') {
+    mdast = regionalMdast;
+  } else if(type === 'langstore') {
+    mdast = langstoreMdast;
+  } else {
+    mdast = mergedMdast;
+  }
+
+  return processHast(mdast, type);
+}
+
+function processHast(mdast, type) {
   const hast = mdast2hast(mdast, {
     handlers: {
       ...defaultHandlers,
@@ -119,17 +131,28 @@ export async function md2html(path1, path2) {
     },
     allowDangerousHtml: true,
   });
-  console.log(hast);
 
   raw(hast);
   hast.children = hast.children.filter(child => !(child.type === 'text' && child.value === '\n'))
     .map(function (child, i) {
-      return {
+      const obj = {
         child,
         uuid: uuidv4(),
-        hash: hashArray[i]
-      };
+      }
+      if (type === 'diffV1') {
+        obj.hash = hashArray[i]
+      }
+      return obj;
     });
+    return hast;
+}
 
-  return hast;
+export async function md2html(path1, path2) {
+  langstoreMdast = await getMdast(path1);
+  const processedMdast1 = getProcessedMdast(langstoreMdast);
+  regionalMdast = await getMdast(path2);
+  const processedMdast2 = getProcessedMdast(regionalMdast);
+  mergedMdast = getMergedMdast(processedMdast1, processedMdast2, hashArray);
+
+  return processHast(mergedMdast, 'diffV1');
 }
