@@ -68,18 +68,21 @@ export default function DocView({
   }
 
   return (
-    <ReactSortable list={blocks} setList={() => { }} onUpdate={onUpdateList}>
+    <div>
       <div className='accept-reject'>
         <AcceptReject
           isHide={(hideAcceptRejectAll || viewType !== 'diffV1')}
           acceptLabel="Accept all"
           rejectLabel="Reject all"
-          onAccept={()=> { updateMerge('added') }}
-          onReject={()=> { updateMerge('deleted') }}
+          onAccept={() => { updateMerge('added') }}
+          onReject={() => { updateMerge('deleted') }}
         />
       </div>
-      {blocks?.map((node, i) => renderDocNode(node, i))}
-    </ReactSortable>
+      <ReactSortable list={blocks} setList={onUpdateList}>
+        {blocks?.map((node, i) => renderDocNode(node, i))}
+      </ReactSortable>
+    </div>
+
   )
 }
 

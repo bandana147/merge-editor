@@ -71,6 +71,7 @@ function App() {
       const newSearchRes = searchResult.filter(child => child.uuid !== id);
       setSearchResult(newSearchRes);
     }
+
   }
 
   function addNode(id, index) {
@@ -83,14 +84,11 @@ function App() {
       delete newSearchRes[index]?.hash?.type;
       setSearchResult(newSearchRes);
     }
+
   }
 
-  function onUpdateList(evt) {
-    const newBlocks = hast.children.slice();
-    const currentElem = newBlocks[evt.oldIndex];
-    newBlocks[evt.oldIndex] = newBlocks[evt.newIndex];
-    newBlocks[evt.newIndex] = currentElem;
-    setBlocks(newBlocks);
+  function onUpdateList(list) {
+    setBlocks(list);
   }
 
   function setSearchBlocks(res) {
@@ -147,7 +145,6 @@ function App() {
 
   function setBlocks(blocks) {
     setHast({ ...hast, children: blocks });
-    setHideAcceptRejectAll(true);
   }
 
   function onSelectTheme(val) {
@@ -157,6 +154,8 @@ function App() {
   function onChangeRange(val) {
     const newBlocks = hast.children.slice(val.start - 1, val.end - 1);
     setSearchResult(newBlocks);
+    setHideAcceptRejectAll(true);
+
   }
 
   function updateMerge(mergeType) {

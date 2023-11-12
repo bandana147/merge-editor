@@ -151,7 +151,7 @@ function Header({
           <Item key="langstore">Langstore</Item>
           <Item key="regional">Regional</Item>
         </Picker>
-        <Picker placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close" width={160}>
+        <Picker key={selectedBlocks.length} placeholder='Select a block' onSelectionChange={onSelectBlock} icon="close" width={160} selectedKey={selectedBlocks[0]?.key}>
           {blockTypes.map(type => <Item key={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</Item>)}
         </Picker>
         <SearchField onChange={onChangeSearch} onClear={onClearSearch} placeholder='Search' width={160} />
