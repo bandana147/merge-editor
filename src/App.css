@@ -298,3 +298,9 @@ hr {
  .accept-reject button {
   border: 0;
  }
+
+ .range-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+ }

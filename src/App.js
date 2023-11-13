@@ -210,8 +210,8 @@ function App() {
         onSelectViewType={onSelectViewType}
         onChangeRange={onChangeRange}
       />
-      <div id="doc" className={`${theme} main-wrapper`}>
-        <div className='doc-container'>
+      <div className={`${theme} main-wrapper`}>
+        <div id="doc" className='doc-container'>
           <div id="block" className={`block-container ${collapsed ? 'collapsed' : ''}`}>
             <DocView
               blocks={node}

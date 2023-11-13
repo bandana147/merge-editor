@@ -33,10 +33,16 @@ export default function DocView({
 
   function onClickBlock(uuid) {
     if (!isPreview) return;
-    const container = document.getElementById('doc');
     const elem = document.getElementById(uuid);
     elem.classList.add('highlight');
-    container.scrollTop = elem.offsetTop - 20;
+    const elementPosition = elem.getBoundingClientRect().top + window.scrollY;
+    const offset = elementPosition - 57;
+
+    window.scrollTo({
+        top: offset,
+        behavior: 'smooth'
+    });
+
     setTimeout(() => {
       elem.classList.remove('highlight');
     }, 1200)

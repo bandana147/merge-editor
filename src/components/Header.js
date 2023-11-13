@@ -137,13 +137,17 @@ function Header({
       <div>Document.docx</div>
       {renderTags()}
       <div className="nav-wrapper">
-        <RangeSlider
+       <div className='range-wrapper'>
+        <span>Top</span>
+       <RangeSlider
           key={`range-${blocks.length}}`}
           defaultValue={{ start: 1, end: blocks.length }}
           minValue={1}
           maxValue={blocks.length}
           onChange={onChangeRange}
         />
+         <span>Bottom</span>
+       </div>
         <Picker placeholder='Select a theme' onSelectionChange={(val) => { onSelectViewType(val) }} selectedKey={viewType} width={120}>
           <Item key="diffV1">Diff v1</Item>
           <Item key="diffV2">Diff v2</Item>
